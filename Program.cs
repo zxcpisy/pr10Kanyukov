@@ -15,9 +15,24 @@ namespace pr10Kan
     {
         static string ClientId = "019c9dd1-8304-7698-8036-729a77d86b7d";
         static string AuthorizationKey = "MDE5YzlkZDEtODMwNC03Njk4LTgwMzYtNzI5YTc3ZDg2YjdkOjc1YTBmNDIzLWNkZDEtNGQyNC1hOWU1LTIzMmI0MTRiZTZjMw==";
-        static async void Main(string[] args)
+        static async Task Main(string[] args)
         {
             string Token = await GetToken(ClientId,AuthorizationKey);
+            if (Token == null)
+            {
+                Console.WriteLine("Не удалось получить токен");
+                return;
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            List<Request.Message> ConversationHistory = new List<Request.Message>();
+
+            while (true)
+            {
+                Console.Write("Сообщение: ");
+                string Message = Console.ReadLine();
+                ResponseMessage Answer = await GetAnswer(Token, Message);
+                Console.WriteLine("Ответ: " + Answer.choices[0].message.content);
+            }
         }
         public static async Task<string> GetToken(string rqUID, string bearer)
         {
