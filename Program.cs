@@ -13,8 +13,8 @@ namespace pr10Kan
 {
     internal class Program
     {
-        static string ClientId = "";
-        static string AuthorizationKey = "";
+        static string ClientId = "019c9dd1-8304-7698-8036-729a77d86b7d";
+        static string AuthorizationKey = "MDE5YzlkZDEtODMwNC03Njk4LTgwMzYtNzI5YTc3ZDg2YjdkOjc1YTBmNDIzLWNkZDEtNGQyNC1hOWU1LTIzMmI0MTRiZTZjMw==";
         static async void Main(string[] args)
         {
             string Token = await GetToken(ClientId,AuthorizationKey);
@@ -22,7 +22,7 @@ namespace pr10Kan
         public static async Task<string> GetToken(string rqUID, string bearer)
         {
             string ReturnToken = null;
-            string Url = "";
+            string Url = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth";
             using(HttpClientHandler Handler = new HttpClientHandler())
             {
                 Handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
@@ -52,7 +52,7 @@ namespace pr10Kan
         public static async Task<ResponseMessage> GetAnswer(string token, string message)
         {
             ResponseMessage responseMessage = null;
-            string Url = "";
+            string Url = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions";
             using (HttpClientHandler Handler = new HttpClientHandler())
             {
                 Handler.ServerCertificateCustomValidationCallback = (mes, cert, chain, sslPolicyErrors) => true;
