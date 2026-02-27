@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace pr10Kan.Models.Response
 {
-    internal class ResponseToken
+    public class ResponseToken
     {
+        public string access_token { get; set; }
+        public string expires_at { get; set; }
     }
 }
